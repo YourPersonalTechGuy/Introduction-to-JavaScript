@@ -18,7 +18,13 @@ Do the following:
    HINT: no function required
 */
 
-
+var votingAge = 17;
+if(votingAge > 17){
+  console.log(true);
+}
+else{
+  console.log(false);
+}
 
 /*
 Task 1b - Values
@@ -30,6 +36,14 @@ Do the following:
 
    HINT: no function required
 */
+
+var var1 = 1;
+var var2 = 2;
+
+if (var1 < var2){
+  var1 = var1 + var2;
+  console.log(var1);
+}
 
 
 
@@ -46,7 +60,9 @@ Do the following:
    HINT: look up the Number method
 */
 
-
+var var1 = "1999";
+var1 = Number(var1);
+console.log(var1);
 
 
 /*
@@ -58,8 +74,8 @@ Do the following:
    3. Multiply a and b and return the answer
 */
 
-function multiply(/*add your code here*/){
-    /*add your code here*/
+function multiply(a, b){
+    return a*b;
   }
 
 
@@ -74,8 +90,8 @@ Do the following:
    3. Return the newly calculated age
 */
 
-function dogYears(/*add your code here*/){
-    /*add your code here*/
+function dogYears(age){
+  return age * 7;
 }
 
 
@@ -107,9 +123,72 @@ Use the hungryDog function and feeding requirements below to do the following:
   NOTE: If done correctly, a weight of 15 lbs and age of 1 year would return 0.44999999999999996
 */  
 
-function hungryDog(/*add your code here*/){
-    /*add your code here*/
+//Calculating how much to feed the dog based on age and weight of the dog
+
+function hungryDog(weight, age){
+    
+  //checks if puppy
+  if (age < 1){
+    //sets variables age and multipler for puppy
+    let puppyAge = age * 12
+    let puppyMultipler = 0;
+    
+    //checking for age for puppy puppyMultipler
+    //if puppy is 7 months or older
+    if(puppyAge > 6){
+      puppyMultipler = 0.04;
+    }
+    //if puppy is 4 months to 6 months
+    else if (puppyAge > 3){
+      puppyMultipler = 0.05;
+    }
+    //if puppy is 1 month to 3 months 
+    else if (puppyAge > 0){
+      puppyMultipler = 0.10;
+    }
+    //error catch
+    else{
+      console.log("something went wrong");
+      return;
+    }
+    //returns puppy food requirements
+    return "Your puppy needs "+ Number.parseFloat(weight * puppyMultipler).toPrecision(2) + " lbs of food ";
   }
+  //checks if dog
+  else if (age >= 1){
+    //sets the dogMultipler variable
+    let dogMultipler =0;
+
+    //checks weight for dogMultipler
+    //if dog weighs more than 15 lbs
+    if(weight > 15){
+      dogMultipler = 0.02;
+    }
+    //if dog weighs 11 lbs to 15 lbs
+    else if(weight > 10){
+      dogMultipler = 0.03
+    }
+    //if dog weighs 6 lbs to 10 lbs
+    else if(weight > 5){
+      dogMultipler= 0.04;
+    }
+    //if dog weighs less than or equal to 5lbs
+    else if(weight <= 5){
+      dogMultipler = 0.05;
+    }
+    //error catch
+    else{
+      console.log("something went wrong");
+      return;
+    }
+    //returns dog food requirements
+    return "Your dog needs " + (Number.parseFloat(weight * dogMultipler).toPrecision(2)) + " lbs of food ";
+  }
+  else{
+    console.log("something went wrong");
+    return;
+  }
+}
 
 
 
