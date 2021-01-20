@@ -60,9 +60,9 @@ Do the following:
    HINT: look up the Number method
 */
 
-var var1 = "1999";
-var1 = Number(var1);
-console.log(var1);
+var num1 = "1999";
+num1 = Number(num1);
+console.log(num1);
 
 
 /*
@@ -129,8 +129,10 @@ function hungryDog(weight, age){
     
   //checks if puppy
   if (age < 1){
-    //sets variables age and multipler for puppy
+    //sets variables age and for puppy
+    //converts age to months
     let puppyAge = age * 12
+    //multiplier for determining the 
     let puppyMultipler = 0;
     
     //checking for age for puppy puppyMultipler
@@ -152,7 +154,7 @@ function hungryDog(weight, age){
       return;
     }
     //returns puppy food requirements
-    return "Your puppy needs "+ Number.parseFloat(weight * puppyMultipler).toPrecision(2) + " lbs of food ";
+    return weight * puppyMultipler;
   }
   //checks if dog
   else if (age >= 1){
@@ -182,8 +184,9 @@ function hungryDog(weight, age){
       return;
     }
     //returns dog food requirements
-    return "Your dog needs " + (Number.parseFloat(weight * dogMultipler).toPrecision(2)) + " lbs of food ";
+    return weight * dogMultipler;
   }
+  //error catch
   else{
     console.log("something went wrong");
     return;
@@ -213,10 +216,40 @@ Use the game function below to do the following:
   HINT: Remember that the order in which we pass in our arguments matters when it comes to parameters
 */
 
+
 function game(user, computer){
-    /*add your code here*/
-}
+  //configures random number generator (RNG)
+  let computerRandom = Math.round(Math.random() * 2);
   
+  //uses RNG to randomly select the opponent state if no opponent state is defined
+  if(computer === undefined){
+    if(computerRandom === 0){computer = "rock"}
+    else if(computerRandom === 1){computer = "paper"}
+    else if(computerRandom === 2){computer = "scissors"}
+  }
+
+  //Defines the game states
+  //Defines the tied state
+  if(user === computer){
+    return "it's a tie";
+  }
+
+  //Defines the Lose state
+  else if((user === "rock" && computer === "paper") || (user === "paper" && computer === "scissors") || (user === "scissors" && computer === "rock")){
+    return "you lose!";
+  }
+
+  //Defines the Win state
+  else if((computer === "rock" && user === "paper") || (computer === "paper" && user === "scissors") || (computer === "scissors" && user === "rock")){
+    return "you win!";
+  }
+
+  //Error catch
+  else{
+    console.log("something went wrong")
+    return;
+  }
+}
   
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -230,8 +263,8 @@ Using the miles function below do the following:
   3. Return the number of miles
 */
 
-function miles(/*add your code here*/){
-    /*add your code here*/
+function miles(kilometers){
+    return kilometers * 0.621371;
   }
 
 
@@ -244,8 +277,8 @@ Using the feet function below do the following:
   3. Return number of feet
 */
 
-function feet(/*add your code here*/){
-    /*add your code here*/
+function feet(centimeters){
+    return centimeters / 30.48;
   }
  
 
@@ -260,9 +293,12 @@ Using the annoyingSong function below do the following:
       "{number} bottles of soda on the wall, {number} bottles of soda, take one down pass it around {number left over} bottles of soda on the wall"
 */
 
-function annoyingSong(/*add your code here*/){
-        /*add your code here*/
-  }
+
+function annoyingSong(number){
+   for (let i = number; number >= 1; i--){
+      return `${number} bottles of soda on the wall, ${number} bottles of soda, take one down pass it around ${number-1} bottles of soda on the wall`;
+  }        
+}
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -280,9 +316,23 @@ Using the grade function below do the following:
    below should return 'you got an F'
 */
   
-function grade(/*Your Code here */){
-  /*Your Code here */
+function grade(theGrade){
+  if(theGrade>=90){
+    return 'you got an A';
   }
+  else if(theGrade>=80){
+    return 'you got a B';
+  }
+  else if(theGrade>=70){
+    return `you got a C`;
+  }
+  else if(theGrade>=60){
+    return `you got a D`;
+  }
+  else if(theGrade<60){
+    return `you got an F`
+  }
+}
   
   
 
@@ -298,10 +348,26 @@ Using the vowelCounter function below do the following:
   HINT - try looking up the .includes() method
 */
 
+function vowelCounter(theInput) {
+  //defines the values that are variables and saves it in an array
+  let vowels = ["a", "e", "i", "o", "u"];
 
-function vowelCounter(/*add your code here*/) {
-    /*add your code here*/
+  //declares the variable counter that will be used to increment per vowel
+  let counter = 0;
+
+  //For loop that declares that it will loop for every letter in the string of theInput reading the letter as lowercase
+  for(let letter of theInput.toLowerCase()){
+
+    //if statement that declares that if the letter of the string is included in the vowel array, increment the counter by 1  
+    if(vowels.includes(letter)){
+      counter++;
+    }
+  }
+  
+  //returns the updated counter
+  return counter;
 }
+
 
 
 
